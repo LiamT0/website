@@ -35,8 +35,11 @@ const animateIntroValue = () => {
   requestAnimationFrame(tick);
 };
 
-const hideIntro = () => {
+const hideIntro = (instant = false) => {
   clearTimeout(introTimer);
+  if (instant && intro) {
+    intro.style.transition = "none";
+  }
   intro?.classList.add("is-hidden");
   document.body.classList.remove("intro-active");
 };
@@ -92,4 +95,8 @@ signupForm?.addEventListener("submit", (event) => {
   formStatus.style.color = "var(--green)";
 });
 
-startIntro();
+if (window.location.search.includes("skipIntro") || window.location.hash.includes("skipIntro")) {
+  hideIntro(true);
+} else {
+  startIntro();
+}
