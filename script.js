@@ -5,6 +5,7 @@ const replayIntro = document.querySelector("#replayIntro");
 const introValue = document.querySelector("#introValue");
 const signupForm = document.querySelector("#signupForm");
 const formStatus = document.querySelector("#formStatus");
+const pageParams = new URLSearchParams(window.location.search);
 
 let introTimer;
 
@@ -64,38 +65,12 @@ enterSite?.addEventListener("click", hideIntro);
 skipIntro?.addEventListener("click", hideIntro);
 replayIntro?.addEventListener("click", startIntro);
 
-signupForm?.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  const formData = new FormData(signupForm);
-  const name = String(formData.get("name") || "").trim();
-  const email = String(formData.get("email") || "").trim();
-  const goal = String(formData.get("goal") || "").trim();
-  const emailLooksValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-  if (!name || !emailLooksValid || !goal) {
-    formStatus.textContent = "Add your name, a valid email, and your main goal.";
-    formStatus.style.color = "var(--gold)";
-    return;
-  }
-
-  const lead = {
-    name,
-    email,
-    goal,
-    createdAt: new Date().toISOString(),
-  };
-
-  const leads = JSON.parse(localStorage.getItem("lockednBetaLeads") || "[]");
-  leads.push(lead);
-  localStorage.setItem("lockednBetaLeads", JSON.stringify(leads));
-
-  signupForm.reset();
+if (pageParams.has("joined") && formStatus) {
   formStatus.textContent = "You're on the LockedN beta list.";
   formStatus.style.color = "var(--green)";
-});
+}
 
-if (window.location.search.includes("skipIntro") || window.location.hash.includes("skipIntro")) {
+if (pageParams.has("skipIntro") || window.location.hash.includes("skipIntro")) {
   hideIntro(true);
 } else {
   startIntro();

@@ -913,6 +913,15 @@ select {
   font-weight: 850;
 }
 
+.form-honey {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .signup-form input,
 .signup-form select {
   width: 100%;

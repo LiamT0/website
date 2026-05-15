@@ -217,7 +217,17 @@
           </p>
         </div>
 
-        <form class="signup-form" id="signupForm" novalidate>
+        <form
+          class="signup-form"
+          id="signupForm"
+          action="https://formsubmit.co/liamjt@lockedn.org"
+          method="POST"
+        >
+          <input type="hidden" name="_subject" value="New LockedN beta signup" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value="https://lockedn.org/?joined=1#beta" />
+          <input class="form-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" />
           <label>
             Name
             <input type="text" name="name" autocomplete="name" placeholder="Your name" required />
