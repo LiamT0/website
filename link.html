@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Connect your bank | LockedN</title>
+    <meta
+      name="description"
+      content="Securely connect your bank account to LockedN through Plaid so your projection reflects real income, spending, and balances."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="legal-body">
+    <header class="site-header">
+      <a class="logo" href="/" aria-label="LockedN home">
+        <span class="logo__mark">
+          <img src="assets/lockedn-mark-light.png" alt="" />
+        </span>
+        <span>LOCKEDN</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="/#projection">Projection</a>
+        <a href="/#guardrails">Card lock</a>
+        <a href="/#beta">Beta</a>
+      </nav>
+      <a class="button button--ghost" href="/signin.html">Account</a>
+    </header>
+
+    <main class="auth-page">
+      <section class="auth-card" aria-labelledby="link-title">
+        <p class="eyebrow">Connect</p>
+        <h1 id="link-title">Securely link your bank with Plaid</h1>
+        <p class="auth-card__lede">
+          LockedN uses Plaid to read your accounts, balances, and transactions so your projection is based on what is actually happening. LockedN never sees your bank password.
+        </p>
+
+        <div data-auth-when="signed-out" class="auth-notice auth-notice--block" hidden>
+          You need to <a href="/signin.html">sign in</a> before linking a bank account.
+        </div>
+
+        <div data-auth-when="signed-in" hidden>
+          <button class="button button--primary" type="button" id="plaidBtn">
+            Connect with Plaid
+          </button>
+          <p class="auth-status" id="plaidStatus" hidden></p>
+          <p class="auth-notice" id="plaidNotice" hidden></p>
+        </div>
+
+        <ul class="link-disclosure">
+          <li><strong>Data accessed:</strong> account names, balances, transactions, identity (name, email).</li>
+          <li><strong>Why:</strong> to project net worth, flag spending leaks, and arm card-lock rules.</li>
+          <li><strong>How long:</strong> kept while your LockedN account is active; deleted on request or account closure.</li>
+          <li><strong>Who else sees it:</strong> nobody. We do not sell data and do not share with advertisers.</li>
+        </ul>
+
+        <p class="auth-fine">
+          By connecting an account you agree to Plaid's
+          <a href="https://plaid.com/legal/#end-user-privacy-policy" target="_blank" rel="noopener">
+            End User Privacy Policy</a>
+          and LockedN's <a href="/privacy.html">Privacy Policy</a>.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>LockedN beta</span>
+      <span class="site-footer__links">
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+      </span>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+    <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
+    <script src="config.js"></script>
+    <script src="auth.js"></script>
+    <script>
+      const notice = document.getElementById("plaidNotice");
+      const status = document.getElementById("plaidStatus");
+      document.getElementById("plaidBtn")?.addEventListener("click", () =>
+        window.LockedNAuth.launchPlaidLink(notice, status)
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign in | LockedN</title>
+    <meta
+      name="description"
+      content="Sign in to LockedN with Apple or Google to access your projection, spending guardrails, and lockable card."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="legal-body">
+    <header class="site-header">
+      <a class="logo" href="/" aria-label="LockedN home">
+        <span class="logo__mark">
+          <img src="assets/lockedn-mark-light.png" alt="" />
+        </span>
+        <span>LOCKEDN</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="/#projection">Projection</a>
+        <a href="/#guardrails">Card lock</a>
+        <a href="/#beta">Beta</a>
+      </nav>
+      <a class="button button--ghost" href="/">Back to site</a>
+    </header>
+
+    <main class="auth-page">
+      <section class="auth-card" aria-labelledby="auth-title">
+        <p class="eyebrow">Beta access</p>
+        <h1 id="auth-title">Sign in to LockedN</h1>
+        <p class="auth-card__lede">
+          Use your Apple or Google account. We only ever receive your name and email from the provider — never your password.
+        </p>
+
+        <div class="sso-stack" data-auth-when="signed-out">
+          <button class="sso-button sso-button--apple" type="button" id="appleBtn">
+            <svg class="sso-button__icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M16.365 1.43c0 1.14-.41 2.21-1.23 3.05-.99 1.01-2.17 1.6-3.45 1.5-.13-1.16.43-2.36 1.23-3.16.9-.9 2.23-1.55 3.45-1.39zM20.5 17.27c-.56 1.3-.83 1.88-1.56 3.02-1.01 1.6-2.44 3.6-4.21 3.62-1.57.02-1.97-1.02-4.1-1.01-2.13.01-2.58 1.03-4.15 1.01-1.77-.03-3.13-1.84-4.14-3.44-2.82-4.46-3.12-9.7-1.38-12.49 1.24-1.98 3.2-3.14 5.04-3.14 1.87 0 3.05 1.03 4.6 1.03 1.51 0 2.43-1.03 4.6-1.03 1.64 0 3.38.9 4.62 2.45-4.06 2.22-3.4 8.02.68 9.98z"
+              />
+            </svg>
+            Continue with Apple
+          </button>
+          <button class="sso-button sso-button--google" type="button" id="googleBtn">
+            <svg class="sso-button__icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="#4285F4"
+                d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47a5.53 5.53 0 0 1-2.4 3.63v3.02h3.88c2.27-2.09 3.58-5.17 3.58-8.89z"
+              />
+              <path
+                fill="#34A853"
+                d="M12 24c3.24 0 5.95-1.08 7.95-2.94l-3.88-3.02c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.27v3.11A11.99 11.99 0 0 0 12 24z"
+              />
+              <path
+                fill="#FBBC05"
+                d="M5.27 14.24a7.21 7.21 0 0 1 0-4.49V6.64H1.27a12 12 0 0 0 0 10.72l4-3.12z"
+              />
+              <path
+                fill="#EA4335"
+                d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.43-3.43C17.95 1.18 15.24 0 12 0A11.99 11.99 0 0 0 1.27 6.64l4 3.11C6.22 6.86 8.87 4.75 12 4.75z"
+              />
+            </svg>
+            Continue with Google
+          </button>
+          <p class="auth-notice" id="authNotice" hidden></p>
+          <p class="auth-fine">
+            By continuing you agree to the
+            <a href="/terms.html">Terms of Service</a> and
+            <a href="/privacy.html">Privacy Policy</a>.
+          </p>
+        </div>
+
+        <div class="signed-in-state" data-auth-when="signed-in" hidden>
+          <p>Signed in as <strong data-auth-email></strong>.</p>
+          <div class="auth-actions">
+            <a class="button button--primary" href="/link.html">Connect your bank</a>
+            <button class="button button--secondary" type="button" id="signOutBtn">Sign out</button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="auth-side">
+        <h2>What sign-in gets you</h2>
+        <ul>
+          <li>A private LockedN account tied to your email.</li>
+          <li>The ability to securely connect a bank account through Plaid.</li>
+          <li>Your projection and guardrails saved between sessions.</li>
+        </ul>
+        <p class="auth-fine">
+          We will never sell your data. Connected account credentials are handled by Plaid and never seen by LockedN.
+        </p>
+      </aside>
+    </main>
+
+    <footer class="site-footer">
+      <span>LockedN beta</span>
+      <span class="site-footer__links">
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+      </span>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+    <script src="config.js"></script>
+    <script src="auth.js"></script>
+    <script>
+      const notice = document.getElementById("authNotice");
+      document.getElementById("appleBtn")?.addEventListener("click", () =>
+        window.LockedNAuth.signInWithApple(notice)
+      );
+      document.getElementById("googleBtn")?.addEventListener("click", () =>
+        window.LockedNAuth.signInWithGoogle(notice)
+      );
+      document.getElementById("signOutBtn")?.addEventListener("click", () =>
+        window.LockedNAuth.signOut()
+      );
+    </script>
+  </body>
+</html>
