@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LockedN | Beta Access</title>
+    <meta
+      name="description"
+      content="LockedN is an AI budgeting brain with projections, spending guardrails, and a card that can lock to help you stay on your wealth plan."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="intro-active">
+    <div class="intro" id="intro" aria-label="LockedN launch intro">
+      <div class="intro__scan"></div>
+      <div class="intro__topline">
+        <span class="brand-mark">LOCKEDN</span>
+        <span>Private beta</span>
+      </div>
+      <button class="intro__skip" type="button" id="skipIntro">Skip</button>
+
+      <div class="intro__stage">
+        <div class="intro__prompt">
+          <span class="intro__label">Ask the AI</span>
+          <p class="typing-line" id="introPrompt">I want to be a millionaire.</p>
+        </div>
+
+        <div class="intro__machine" aria-hidden="true">
+          <div class="signal-row">
+            <span>Income</span>
+            <i></i>
+          </div>
+          <div class="signal-row">
+            <span>Spending</span>
+            <i></i>
+          </div>
+          <div class="signal-row">
+            <span>Debt</span>
+            <i></i>
+          </div>
+          <div class="signal-row">
+            <span>Guardrails</span>
+            <i></i>
+          </div>
+        </div>
+
+        <div class="intro__projection">
+          <span>Projected path</span>
+          <strong id="introValue">$0</strong>
+          <div class="intro__chart">
+            <b style="--h: 24%"></b>
+            <b style="--h: 38%"></b>
+            <b style="--h: 51%"></b>
+            <b style="--h: 68%"></b>
+            <b style="--h: 86%"></b>
+          </div>
+        </div>
+
+        <div class="intro__reveal">
+          <p>Projection ready. Plan loaded. Card lock armed.</p>
+          <h1>Are you ready to get rich?</h1>
+          <button class="button button--light" type="button" id="enterSite">Show me the path</button>
+        </div>
+      </div>
+    </div>
+
+    <header class="site-header">
+      <a class="logo" href="#top" aria-label="LockedN home">
+        LOCKEDN
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#projection">Projection</a>
+        <a href="#guardrails">Card lock</a>
+        <a href="#beta">Beta</a>
+      </nav>
+      <button class="button button--ghost" type="button" id="replayIntro">Replay</button>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__copy">
+          <p class="eyebrow">AI wealth projection + lockable card</p>
+          <h1 id="hero-title">Ask LockedN how to become a millionaire.</h1>
+          <p class="hero__lede">
+            LockedN turns your income, spending, debt, and goals into a projected wealth path, then helps protect the plan with a card built for discipline.
+          </p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="#beta">Join the beta</a>
+            <a class="button button--secondary" href="#projection">See the projection</a>
+          </div>
+          <p class="fine-print">
+            Projections are estimates, not guarantees. The win is discipline, visibility, and fewer money leaks.
+          </p>
+        </div>
+
+        <div class="wealth-visual" aria-label="LockedN product preview">
+          <div class="app-preview">
+            <div class="app-preview__brand">LOCKEDN</div>
+            <div class="black-card">
+              <div class="black-card__top">
+                <div>
+                  <span>LOCKEDN</span>
+                  <small>BLACK</small>
+                </div>
+                <b>VISA</b>
+              </div>
+              <div class="card-chip"></div>
+              <div class="black-card__number">
+                <span>&bull;&bull;&bull;&bull;</span>
+                <span>&bull;&bull;&bull;&bull;</span>
+                <span>&bull;&bull;&bull;&bull;</span>
+                <strong>4242</strong>
+              </div>
+              <div class="black-card__foot">
+                <span>CARDHOLDER</span>
+                <strong>BETA MEMBER</strong>
+              </div>
+              <div class="card-lock-status">AI LOCK READY</div>
+            </div>
+
+            <div class="balance-panel">
+              <span>Total balance</span>
+              <strong>$14,260.65</strong>
+              <p>Across 2 accounts</p>
+            </div>
+
+            <div class="ai-console">
+              <div class="message message--user">I want to be a millionaire.</div>
+              <div class="message message--ai">
+                Save rate needed: $2,150/mo<br />
+                Spending leaks found: $417/mo<br />
+                Projected path: <strong>18 yrs 7 mos</strong>
+              </div>
+            </div>
+
+            <div class="projection-panel">
+              <div>
+                <span>Target</span>
+                <strong>$1,000,000</strong>
+              </div>
+              <div class="mini-chart" aria-hidden="true">
+                <i style="--h: 28%"></i>
+                <i style="--h: 44%"></i>
+                <i style="--h: 59%"></i>
+                <i style="--h: 72%"></i>
+                <i style="--h: 92%"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--contrast" id="projection" aria-labelledby="projection-title">
+        <div class="section__heading">
+          <p class="eyebrow">Projection, not fantasy</p>
+          <h2 id="projection-title">Ask for the goal. Get the moves.</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span class="feature-card__number">01</span>
+            <h3>See the path</h3>
+            <p>LockedN estimates what your current habits could become and shows the monthly changes that move the projection.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-card__number">02</span>
+            <h3>Cut money leaks</h3>
+            <p>Subscriptions, impulse buys, fees, and budget drift become visible before they quietly eat the plan.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-card__number">03</span>
+            <h3>Stay locked in</h3>
+            <p>Smart card locks help turn the plan from a dashboard you ignore into guardrails you can actually feel.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="split-section" id="guardrails" aria-labelledby="guardrails-title">
+        <div>
+          <p class="eyebrow">Built for discipline</p>
+          <h2 id="guardrails-title">The card helps protect the projection.</h2>
+          <p>
+            The point is not to promise wealth. The point is to help you keep the behaviors that make wealth more possible: save more, waste less, and stay on plan when temptation hits. Using the card can help build wealth by keeping daily spending aligned with the projection.
+          </p>
+        </div>
+        <div class="lock-list">
+          <div>
+            <span>Auto-lock categories</span>
+            <strong>Pause spending before a budget line gets blown.</strong>
+          </div>
+          <div>
+            <span>AI check-ins</span>
+            <strong>Ask what changed and see a new projection.</strong>
+          </div>
+          <div>
+            <span>Wealth milestones</span>
+            <strong>Track net worth targets with realistic assumptions.</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="beta-section" id="beta" aria-labelledby="beta-title">
+        <div class="beta-section__copy">
+          <p class="eyebrow">Beta access</p>
+          <h2 id="beta-title">Your turn to get locked in.</h2>
+          <p>
+            Join the early list for the LockedN beta. We will start with people who want projections, accountability, and a card that can defend the plan.
+          </p>
+        </div>
+
+        <form class="signup-form" id="signupForm" novalidate>
+          <label>
+            Name
+            <input type="text" name="name" autocomplete="name" placeholder="Your name" required />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" autocomplete="email" placeholder="you@example.com" required />
+          </label>
+          <label>
+            Main goal
+            <select name="goal" required>
+              <option value="">Choose one</option>
+              <option>Become a millionaire</option>
+              <option>Stop overspending</option>
+              <option>Pay down debt</option>
+              <option>Build investing discipline</option>
+            </select>
+          </label>
+          <button class="button button--primary" type="submit">Request beta access</button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>LockedN beta</span>
+      <span>Projections are informational and not financial advice.</span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
